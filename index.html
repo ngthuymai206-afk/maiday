@@ -7,11 +7,11 @@
     <style>
         /* --- 基礎樣式 (類似 LinkedIn 配色) --- */
         :root {
-            --bg-color: #F3F6F8;
+            --bg-color: #F3F6F8; /* 淺灰背景 */
             --white: #FFFFFF;
             --text-main: #000000;
             --text-secondary: rgba(0, 0, 0, 0.6);
-            --link-color: #0A66C2;
+            --link-color: #0A66C2; /* LinkedIn 藍 */
             --border-color: #E0E0E0;
             --shadow: 0 0 0 1px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.12);
         }
@@ -30,18 +30,20 @@
             padding-bottom: 50px;
         }
 
+        /* --- 版面配置 --- */
         .container {
-            max-width: 1128px;
+            max-width: 1128px; /* LinkedIn 標準寬度 */
             margin: 0 auto;
             padding: 0 20px;
         }
 
+        /* --- 通用卡片樣式 --- */
         .card {
             background-color: var(--white);
             border-radius: 8px;
             box-shadow: var(--shadow);
             margin-bottom: 20px;
-            overflow: hidden;
+            overflow: hidden; /* 確保 Banner 不會超出邊框 */
         }
 
         .card-header {
@@ -54,14 +56,14 @@
             padding: 24px;
         }
 
-        /* --- 頂部個人資訊區 --- */
+        /* --- 頂部個人資訊區 (Hero Section) --- */
         .profile-header-card {
             position: relative;
         }
 
         .banner {
             height: 200px;
-            background: linear-gradient(135deg, #A0B4CB 0%, #708090 100%);
+            background: linear-gradient(135deg, #A0B4CB 0%, #708090 100%); /* 預設漸層 Banner */
             background-size: cover;
             background-position: center;
         }
@@ -76,27 +78,36 @@
             height: 160px;
             border-radius: 50%;
             border: 4px solid var(--white);
-            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
             background-color: var(--white);
             position: absolute;
-            top: -110px; /* 壓在 Banner 上 */
+            top: -110px; /* 向上偏移，壓在 Banner 上 */
             left: 24px;
             overflow: hidden;
-            z-index: 2; /* 確保頭像在最上層 */
         }
 
         .profile-photo {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: cover; /* 確保圖片不變形 */
+        }
+
+        /* 當沒有圖片時顯示的預設頭像樣式 */
+        .profile-photo-placeholder {
+            width: 100%;
+            height: 100%;
+            background-color: #E9EDF0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 64px;
+            color: #A0B4CB;
+            font-weight: bold;
         }
 
         .basic-info {
-            /* 修正處：將 margin-top 從 60px 提高到 70px，確保文字不被遮擋 */
-            margin-top: 70px; 
+            margin-top: 60px; /* 為頭像預留空間 */
             max-width: 700px;
-            position: relative;
-            z-index: 1;
         }
 
         .name {
@@ -122,6 +133,10 @@
             font-weight: 600;
         }
 
+        .location-contact a:hover {
+            text-decoration: underline;
+        }
+
         .action-buttons {
             margin-top: 16px;
             display: flex;
@@ -130,13 +145,13 @@
 
         .btn {
             padding: 6px 16px;
-            border-radius: 24px;
+            border-radius: 16px;
             font-weight: 600;
             font-size: 16px;
             cursor: pointer;
             text-decoration: none;
             display: inline-block;
-            transition: all 0.2s;
+            transition: background-color 0.2s;
         }
 
         .btn-primary {
@@ -157,16 +172,18 @@
 
         .btn-secondary:hover {
             background-color: #E8F3FF;
-            box-shadow: inset 0 0 0 1px var(--link-color);
+            border-width: 2px;
+            padding: 5px 15px; /* 調整 padding 保持高度一致 */
         }
 
-        /* --- 其他區塊樣式 --- */
+        /* --- 關於 (About) --- */
         .about-text {
             font-size: 14px;
-            white-space: pre-line;
+            white-space: pre-line; /* 保留換行 */
             color: var(--text-main);
         }
 
+        /* --- 經歷/學歷通用項目樣式 --- */
         .experience-item, .education-item {
             display: flex;
             padding: 16px 0;
@@ -175,6 +192,7 @@
 
         .experience-item:last-child, .education-item:last-child {
             border-bottom: none;
+            padding-bottom: 0;
         }
 
         .company-logo, .school-logo {
@@ -182,12 +200,13 @@
             height: 48px;
             margin-right: 12px;
             flex-shrink: 0;
-            background-color: #F3F6F8;
+            background-color: #F3F6F8; /* 預設 Logo 背景 */
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
             color: #708090;
+            font-size: 20px;
         }
 
         .item-details .title {
@@ -197,6 +216,7 @@
 
         .item-details .subtitle {
             font-size: 14px;
+            color: var(--text-main);
         }
 
         .item-details .date-range {
@@ -204,6 +224,13 @@
             color: var(--text-secondary);
         }
 
+        .item-details .description {
+            margin-top: 8px;
+            font-size: 14px;
+            color: var(--text-main);
+        }
+
+        /* --- 技能 (Skills) --- */
         .skills-list {
             list-style: none;
             display: flex;
@@ -214,27 +241,33 @@
         .skill-item {
             font-size: 14px;
             font-weight: 600;
+            color: var(--text-main);
             padding: 8px 16px;
             border: 1px solid var(--border-color);
             border-radius: 16px;
+            background-color: var(--white);
+        }
+       
+        .skill-item:hover {
+            background-color: #F3F6F8;
+            border-color: #C0C0C0;
         }
 
-        /* --- 響應式設計修正 --- */
+        /* --- 響應式設計 (手機端) --- */
         @media (max-width: 768px) {
             .banner {
                 height: 120px;
             }
 
             .profile-photo-container {
-                width: 120px;
-                height: 120px;
+                width: 100px;
+                height: 100px;
                 top: -60px;
-                left: calc(50% - 60px);
+                left: calc(50% - 50px); /* 居中 */
             }
 
             .basic-info {
-                /* 修正處：手機版照片居中，文字需留出更多上方空間以免被遮擋 */
-                margin-top: 75px; 
+                margin-top: 50px;
                 text-align: center;
                 display: flex;
                 flex-direction: column;
@@ -243,6 +276,15 @@
 
             .action-buttons {
                 justify-content: center;
+            }
+           
+            .experience-item, .education-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+           
+            .company-logo, .school-logo {
+                margin-bottom: 10px;
             }
         }
     </style>
@@ -254,20 +296,23 @@
     <div class="container">
         <div class="card profile-header-card">
             <div class="banner"></div>
-            
+           
             <div class="profile-info-wrapper">
                 <div class="profile-photo-container">
-                    <img src="images/1.jpg" class="profile-photo" alt="Profile">
+                    <img src="images/1.jpg" class="profile-photo">
+                    <div class="profile-photo-placeholder" style="display:none;">
+                        <span>頭像</span>
+                    </div>
                 </div>
 
                 <div class="basic-info">
                     <h1 class="name">[maiday]</h1>
-                    <div class="headline">資深全端工程師 | 專注於 React & Node.js | UI/UX 愛好者</div>
+                    <div class="headline">[您的專業職稱，例如：資深全端工程師 | 專注於 React & Node.js | UI/UX 愛好者]</div>
                     <div class="location-contact">
-                        台灣台北市 &middot; 
-                        <a href="#contact">聯絡方式</a>
+                        [居住城市，例如：台灣台北市] &middot;
+                        <a href="#contact">[聯絡方式]</a>
                     </div>
-                    
+                   
                     <div class="action-buttons">
                         <a href="mailto:your.email@example.com" class="btn btn-primary">與我聯絡</a>
                         <a href="#" class="btn btn-secondary">下載履歷</a>
@@ -280,8 +325,13 @@
             <div class="card-header">關於</div>
             <div class="card-content">
                 <p class="about-text">
-                    擁有超過 5 年的全端開發經驗，專精於 React 與高效能 Node.js 服務架構。
-                    過去曾成功優化系統架構，讓產品效能提升了 40%。熱衷於解決技術難題，並致力於打造極致的使用者體驗。
+                    這裡是您的個人簡介。請用簡短有力的幾段話介紹您自己。
+                   
+                    提及您的專業背景、核心技能、熱情所在，以及您能帶來的價值。例如：
+                   
+                    「擁有超過 [X] 年的 [領域] 經驗，專精於 [技能 A] 與 [技能 B]。過去曾成功帶領團隊完成 [專案類型]，並提升了 [具體成效]。熱衷於解決複雜問題，並持續探索新技術...」
+                   
+                    (此處支援換行)
                 </p>
             </div>
         </div>
@@ -289,20 +339,50 @@
         <div class="card">
             <div class="card-header">工作經歷</div>
             <div class="card-content">
+               
                 <div class="experience-item">
-                    <div class="company-logo">L1</div> 
-                    <div class="item-details">
-                        <div class="title">資深全端工程師</div>
-                        <div class="subtitle">某科技公司 &middot; 全職</div>
-                        <div class="date-range">2021 年 1 月 – 目前</div>
+                    <div class="company-logo">L1</div> <div class="item-details">
+                        <div class="title">[目前職位名稱]</div>
+                        <div class="subtitle">[公司名稱] &middot; [僱用類型，如：全職]</div>
+                        <div class="date-range">[開始年份] 年 [月份] – 目前 &middot; [總年資]</div>
                         <div class="description">
                             <ul>
-                                <li>負責核心產品的設計與開發，導入微服務架構提升穩定性。</li>
-                                <li>領導 5 人團隊進行敏捷開發。</li>
+                                <li>負責 [專案 A] 的架構設計與開發，成功提升了 20% 的效能。</li>
+                                <li>導入 [新技術/新流程]，優化團隊開發效率。</li>
+                                <li>管理 [N] 人的開發團隊，進行程式碼審查與技術指導。</li>
                             </ul>
                         </div>
                     </div>
                 </div>
+
+                <div class="experience-item">
+                    <div class="company-logo">L2</div>
+                    <div class="item-details">
+                        <div class="title">[前一個職位名稱]</div>
+                        <div class="subtitle">[前公司名稱]</div>
+                        <div class="date-range">[開始年份] – [結束年份] &middot; [年資]</div>
+                        <div class="description">
+                            參與 [專案名稱] 開發，專注於後端 API 串接與資料庫優化。協助解決了 [特定技術難題]。
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">學歷</div>
+            <div class="card-content">
+               
+                <div class="education-item">
+                    <div class="school-logo">U</div>
+                    <div class="item-details">
+                        <div class="title">[大學/研究所名稱]</div>
+                        <div class="subtitle">[學位名稱，例如：資訊工程碩士]</div>
+                        <div class="date-range">[入學年份] – [畢業年份]</div>
+                    </div>
+                </div>
+
             </div>
         </div>
 
@@ -310,11 +390,16 @@
             <div class="card-header">專業技能</div>
             <div class="card-content">
                 <ul class="skills-list">
+                    <li class="skill-item">專案管理</li>
+                    <li class="skill-item">Python</li>
+                    <li class="skill-item">JavaScript (ES6+)</li>
                     <li class="skill-item">React.js</li>
-                    <li class="skill-item">TypeScript</li>
                     <li class="skill-item">Node.js</li>
+                    <li class="skill-item">SQL / NoSQL</li>
                     <li class="skill-item">Docker</li>
-                    <li class="skill-item">AWS</li>
+                    <li class="skill-item">雲端架構 (AWS/GCP)</li>
+                    <li class="skill-item">跨部門溝通</li>
+                    <li class="skill-item">UI / UX 設計</li>
                 </ul>
             </div>
         </div>
@@ -323,11 +408,15 @@
             <div class="card-header">聯絡方式</div>
             <div class="card-content">
                 <p class="about-text">
-                    📧 Email: <a href="mailto:your.email@example.com" style="color:var(--link-color); text-decoration:none;">your.email@example.com</a><br>
+                    如果您對我的背景感興趣，或有合作機會，歡迎透過以下方式與我聯繫：
+                   
+                    📧 Email: <a href="mailto:your.email@example.com" style="color:var(--link-color); text-decoration:none;">your.email@example.com</a>
+                    🔗 LinkedIn: <a href="#" style="color:var(--link-color); text-decoration:none;">您的 LinkedIn 個人主頁連結</a>
                     🌍 作品集: <a href="#" style="color:var(--link-color); text-decoration:none;">yourportfolio.com</a>
                 </p>
             </div>
         </div>
+
     </div>
 
 </body>
