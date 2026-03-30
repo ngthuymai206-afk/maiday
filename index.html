@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>[maiday] - 專業個人簡介 | LinkedIn 風格</title>
     <style>
-        /* --- 基礎樣式 --- */
+        /* --- 基礎樣式 (類似 LinkedIn 配色) --- */
         :root {
-            --bg-color: #F3F6F8;
+            --bg-color: #F3F6F8; /* 淺灰背景 */
             --white: #FFFFFF;
             --text-main: #000000;
             --text-secondary: rgba(0, 0, 0, 0.6);
-            --link-color: #0A66C2;
+            --link-color: #0A66C2; /* LinkedIn 藍 */
             --border-color: #E0E0E0;
             --shadow: 0 0 0 1px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.12);
         }
@@ -23,19 +23,18 @@
         }
 
         body {
-            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell, "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", sans-serif;
             background-color: var(--bg-color);
             color: var(--text-main);
             line-height: 1.5;
-            display: block; /* 確保內容顯示 */
             padding-bottom: 50px;
         }
 
+        /* --- 版面配置 --- */
         .container {
-            max-width: 1128px;
-            margin: 40px auto;
+            max-width: 1128px; /* LinkedIn 標準寬度 */
+            margin: 0 auto;
             padding: 0 20px;
-            display: block;
         }
 
         /* --- 通用卡片樣式 --- */
@@ -44,9 +43,7 @@
             border-radius: 8px;
             box-shadow: var(--shadow);
             margin-bottom: 20px;
-            overflow: visible; /* 改為 visible 以免遮擋頭像 */
-            display: flex;
-            flex-direction: column;
+            overflow: hidden; /* 確保 Banner 不會超出邊框 */
         }
 
         .card-header {
@@ -59,21 +56,47 @@
             padding: 24px;
         }
 
-        /* --- 頂部個人資訊區 (解決遮擋問題) --- */
+        /* --- 頂部個人資訊區 (Hero Section) --- */
         .profile-header-card {
             position: relative;
         }
 
         .banner {
             height: 200px;
-            background: linear-gradient(135deg, #A0B4CB 0%, #708090 100%);
+            background: linear-gradient(135deg, #A0B4CB 0%, #708090 100%); /* 預設漸層 Banner */
             background-size: cover;
             background-position: center;
-            border-top-left-radius: 8px;
-            border-top-right-radius: 8px;
         }
 
         .profile-info-wrapper {
             padding: 0 24px 24px 24px;
             position: relative;
-            min-height: 180px; /* 給予
+        }
+
+        .profile-photo-container {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            border: 4px solid var(--white);
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
+            background-color: var(--white);
+            position: absolute;
+            top: -110px; /* 向上偏移，壓在 Banner 上 */
+            left: 24px;
+            overflow: hidden;
+            z-index: 2; /* 確保在最上層 */
+        }
+
+        .profile-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* 確保圖片不變形 */
+        }
+
+        /* 當沒有圖片時顯示的預設頭像樣式 */
+        .profile-photo-placeholder {
+            width: 100%;
+            height: 100%;
+            background-color: #E9EDF0;
+            display: flex;
+            align
