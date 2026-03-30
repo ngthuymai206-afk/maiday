@@ -3,100 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>[maiday] - 專業個人簡介 | LinkedIn 風格</title>
+    <title>[maiday] - 個人簡介</title>
     <style>
-        /* --- 基礎樣式 (類似 LinkedIn 配色) --- */
         :root {
-            --bg-color: #F3F6F8; /* 淺灰背景 */
+            --bg: #F3F6F8;
             --white: #FFFFFF;
-            --text-main: #000000;
-            --text-secondary: rgba(0, 0, 0, 0.6);
-            --link-color: #0A66C2; /* LinkedIn 藍 */
-            --border-color: #E0E0E0;
-            --shadow: 0 0 0 1px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.12);
+            --blue: #0A66C2;
+            --text: #000000;
+            --gray: rgba(0, 0, 0, 0.6);
+            --shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
-            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell, "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.5;
-            padding-bottom: 50px;
+            font-family: sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            padding: 20px;
         }
 
-        /* --- 版面配置 --- */
         .container {
-            max-width: 1128px; /* LinkedIn 標準寬度 */
+            max-width: 1128px;
             margin: 0 auto;
-            padding: 0 20px;
         }
 
-        /* --- 通用卡片樣式 --- */
-        .card {
-            background-color: var(--white);
-            border-radius: 8px;
+        /* 個人主卡片 */
+        .profile-card {
+            background: var(--white);
+            border-radius: 10px;
             box-shadow: var(--shadow);
-            margin-bottom: 20px;
-            overflow: hidden; /* 確保 Banner 不會超出邊框 */
-        }
-
-        .card-header {
-            padding: 20px 24px 0 24px;
-            font-size: 20px;
-            font-weight: 600;
-        }
-
-        .card-content {
-            padding: 24px;
-        }
-
-        /* --- 頂部個人資訊區 (Hero Section) --- */
-        .profile-header-card {
+            overflow: hidden;
             position: relative;
+            margin-bottom: 20px;
         }
 
         .banner {
             height: 200px;
-            background: linear-gradient(135deg, #A0B4CB 0%, #708090 100%); /* 預設漸層 Banner */
-            background-size: cover;
-            background-position: center;
+            background: linear-gradient(135deg, #A0B4CB, #708090);
         }
 
-        .profile-info-wrapper {
-            padding: 0 24px 24px 24px;
+        .info-section {
+            padding: 24px;
             position: relative;
+            /* 關鍵修正：增加頂部內邊距，確保名字在照片下方 */
+            padding-top: 80px; 
         }
 
-        .profile-photo-container {
+        .photo-box {
             width: 160px;
             height: 160px;
             border-radius: 50%;
             border: 4px solid var(--white);
-            box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
-            background-color: var(--white);
             position: absolute;
-            top: -110px; /* 向上偏移，壓在 Banner 上 */
+            top: -100px; /* 向上移動壓在 banner 上 */
             left: 24px;
+            background: #eee;
             overflow: hidden;
-            z-index: 2; /* 確保在最上層 */
+            z-index: 10;
         }
 
-        .profile-photo {
+        .photo-box img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* 確保圖片不變形 */
+            object-fit: cover;
         }
 
-        /* 當沒有圖片時顯示的預設頭像樣式 */
-        .profile-photo-placeholder {
-            width: 100%;
-            height: 100%;
-            background-color: #E9EDF0;
-            display: flex;
-            align
+        .name {
+            font-size: 28px;
+            font
