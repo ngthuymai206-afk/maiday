@@ -71,7 +71,6 @@
         .profile-info-wrapper {
             padding: 0 24px 24px 24px;
             position: relative;
-            /* Thêm padding-bottom để tạo không gian cho phần info nếu cần */
         }
 
         .profile-photo-container {
@@ -85,7 +84,6 @@
             top: -110px; /* 向上偏移，壓在 Banner 上 */
             left: 24px;
             overflow: hidden;
-            z-index: 2; /* Đảm bảo ảnh nằm trên cùng */
         }
 
         .profile-photo {
@@ -107,21 +105,14 @@
             font-weight: bold;
         }
 
-        /* --- PHẦN ĐÃ SỬA: basic-info --- */
         .basic-info {
-            /* Tăng margin-top để đẩy tên xuống dưới ảnh đại diện */
-            /* Ảnh cao 160px, nhô lên 110px -> phần dưới là 50px. Thêm khoảng trống padding */
-            margin-top: 60px; 
+            margin-top: 60px; /* 為頭像預留空間 */
             max-width: 700px;
-            position: relative;
-            z-index: 1; /* Nằm dưới ảnh nhưng trên nền card */
         }
 
         .name {
             font-size: 24px;
             font-weight: 600;
-            /* Đảm bảo tên không bị dính vào cạnh trái nơi có ảnh (trên desktop) */
-            /* padding-left: 170px; */ /* Cách cũ nếu dùng margin-top thấp */
         }
 
         .headline {
@@ -239,10 +230,6 @@
             color: var(--text-main);
         }
 
-        .description ul {
-            padding-left: 20px;
-        }
-
         /* --- 技能 (Skills) --- */
         .skills-list {
             list-style: none;
@@ -260,7 +247,7 @@
             border-radius: 16px;
             background-color: var(--white);
         }
-        
+       
         .skill-item:hover {
             background-color: #F3F6F8;
             border-color: #C0C0C0;
@@ -280,8 +267,7 @@
             }
 
             .basic-info {
-                /* Đã sửa ở phần mobile: Tăng margin-top để đẩy nội dung xuống thấp hơn khi ảnh căn giữa */
-                margin-top: 50px; 
+                margin-top: 50px;
                 text-align: center;
                 display: flex;
                 flex-direction: column;
@@ -290,14 +276,13 @@
 
             .action-buttons {
                 justify-content: center;
-                flex-wrap: wrap; /* Cho phép nút xuống dòng nếu quá chật */
             }
-            
+           
             .experience-item, .education-item {
                 flex-direction: column;
                 align-items: flex-start;
             }
-            
+           
             .company-logo, .school-logo {
                 margin-bottom: 10px;
             }
@@ -311,10 +296,10 @@
     <div class="container">
         <div class="card profile-header-card">
             <div class="banner"></div>
-            
+           
             <div class="profile-info-wrapper">
                 <div class="profile-photo-container">
-                    <img src="images/1.jpg" class="profile-photo" alt="Profile Photo">
+                    <img src="images/1.jpg" class="profile-photo">
                     <div class="profile-photo-placeholder" style="display:none;">
                         <span>頭像</span>
                     </div>
@@ -322,4 +307,117 @@
 
                 <div class="basic-info">
                     <h1 class="name">[maiday]</h1>
-                    <div class="headline">[您的專業職稱，例如：資深全端工程師 |
+                    <div class="headline">[您的專業職稱，例如：資深全端工程師 | 專注於 React & Node.js | UI/UX 愛好者]</div>
+                    <div class="location-contact">
+                        [居住城市，例如：台灣台北市] &middot;
+                        <a href="#contact">[聯絡方式]</a>
+                    </div>
+                   
+                    <div class="action-buttons">
+                        <a href="mailto:your.email@example.com" class="btn btn-primary">與我聯絡</a>
+                        <a href="#" class="btn btn-secondary">下載履歷</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">關於</div>
+            <div class="card-content">
+                <p class="about-text">
+                    這裡是您的個人簡介。請用簡短有力的幾段話介紹您自己。
+                   
+                    提及您的專業背景、核心技能、熱情所在，以及您能帶來的價值。例如：
+                   
+                    「擁有超過 [X] 年的 [領域] 經驗，專精於 [技能 A] 與 [技能 B]。過去曾成功帶領團隊完成 [專案類型]，並提升了 [具體成效]。熱衷於解決複雜問題，並持續探索新技術...」
+                   
+                    (此處支援換行)
+                </p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">工作經歷</div>
+            <div class="card-content">
+               
+                <div class="experience-item">
+                    <div class="company-logo">L1</div> <div class="item-details">
+                        <div class="title">[目前職位名稱]</div>
+                        <div class="subtitle">[公司名稱] &middot; [僱用類型，如：全職]</div>
+                        <div class="date-range">[開始年份] 年 [月份] – 目前 &middot; [總年資]</div>
+                        <div class="description">
+                            <ul>
+                                <li>負責 [專案 A] 的架構設計與開發，成功提升了 20% 的效能。</li>
+                                <li>導入 [新技術/新流程]，優化團隊開發效率。</li>
+                                <li>管理 [N] 人的開發團隊，進行程式碼審查與技術指導。</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="company-logo">L2</div>
+                    <div class="item-details">
+                        <div class="title">[前一個職位名稱]</div>
+                        <div class="subtitle">[前公司名稱]</div>
+                        <div class="date-range">[開始年份] – [結束年份] &middot; [年資]</div>
+                        <div class="description">
+                            參與 [專案名稱] 開發，專注於後端 API 串接與資料庫優化。協助解決了 [特定技術難題]。
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">學歷</div>
+            <div class="card-content">
+               
+                <div class="education-item">
+                    <div class="school-logo">U</div>
+                    <div class="item-details">
+                        <div class="title">[大學/研究所名稱]</div>
+                        <div class="subtitle">[學位名稱，例如：資訊工程碩士]</div>
+                        <div class="date-range">[入學年份] – [畢業年份]</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">專業技能</div>
+            <div class="card-content">
+                <ul class="skills-list">
+                    <li class="skill-item">專案管理</li>
+                    <li class="skill-item">Python</li>
+                    <li class="skill-item">JavaScript (ES6+)</li>
+                    <li class="skill-item">React.js</li>
+                    <li class="skill-item">Node.js</li>
+                    <li class="skill-item">SQL / NoSQL</li>
+                    <li class="skill-item">Docker</li>
+                    <li class="skill-item">雲端架構 (AWS/GCP)</li>
+                    <li class="skill-item">跨部門溝通</li>
+                    <li class="skill-item">UI / UX 設計</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card" id="contact">
+            <div class="card-header">聯絡方式</div>
+            <div class="card-content">
+                <p class="about-text">
+                    如果您對我的背景感興趣，或有合作機會，歡迎透過以下方式與我聯繫：
+                   
+                    📧 Email: <a href="mailto:your.email@example.com" style="color:var(--link-color); text-decoration:none;">your.email@example.com</a>
+                    🔗 LinkedIn: <a href="#" style="color:var(--link-color); text-decoration:none;">您的 LinkedIn 個人主頁連結</a>
+                    🌍 作品集: <a href="#" style="color:var(--link-color); text-decoration:none;">yourportfolio.com</a>
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
