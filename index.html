@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>[maiday] - 專業個人簡介 | LinkedIn 風格</title>
     <style>
-        /* --- 基礎樣式 (LinkedIn 配色) --- */
+        /* --- 基礎樣式 --- */
         :root {
             --bg-color: #F3F6F8;
             --white: #FFFFFF;
@@ -27,21 +27,26 @@
             background-color: var(--bg-color);
             color: var(--text-main);
             line-height: 1.5;
+            display: block; /* 確保內容顯示 */
             padding-bottom: 50px;
         }
 
         .container {
             max-width: 1128px;
-            margin: 0 auto;
+            margin: 40px auto;
             padding: 0 20px;
+            display: block;
         }
 
+        /* --- 通用卡片樣式 --- */
         .card {
             background-color: var(--white);
             border-radius: 8px;
             box-shadow: var(--shadow);
             margin-bottom: 20px;
-            overflow: hidden;
+            overflow: visible; /* 改為 visible 以免遮擋頭像 */
+            display: flex;
+            flex-direction: column;
         }
 
         .card-header {
@@ -54,7 +59,7 @@
             padding: 24px;
         }
 
-        /* --- Header Section (Sửa lỗi che tên) --- */
+        /* --- 頂部個人資訊區 (解決遮擋問題) --- */
         .profile-header-card {
             position: relative;
         }
@@ -64,9 +69,11 @@
             background: linear-gradient(135deg, #A0B4CB 0%, #708090 100%);
             background-size: cover;
             background-position: center;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
         }
 
         .profile-info-wrapper {
             padding: 0 24px 24px 24px;
             position: relative;
-        }
+            min-height: 180px; /* 給予
