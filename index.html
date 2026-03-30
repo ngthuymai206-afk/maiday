@@ -3,71 +3,230 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>[maiday] - 個人簡介</title>
+    <title>[maiday] - 專業個人簡介 | LinkedIn 風格</title>
     <style>
+        /* --- 基礎樣式 --- */
         :root {
-            --bg: #F3F6F8;
+            --bg-color: #F3F6F8;
             --white: #FFFFFF;
-            --blue: #0A66C2;
-            --text: #000000;
-            --gray: rgba(0, 0, 0, 0.6);
-            --shadow: 0 2px 5px rgba(0,0,0,0.1);
+            --text-main: #000000;
+            --text-secondary: rgba(0, 0, 0, 0.6);
+            --link-color: #0A66C2;
+            --border-color: #E0E0E0;
+            --shadow: 0 0 0 1px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.12);
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
         body {
-            font-family: sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            padding: 20px;
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.5;
+            display: block; /* 確保內容顯示 */
+            padding-bottom: 50px;
         }
 
         .container {
             max-width: 1128px;
-            margin: 0 auto;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: block;
         }
 
-        /* 個人主卡片 */
-        .profile-card {
-            background: var(--white);
-            border-radius: 10px;
+        /* --- 通用卡片樣式 --- */
+        .card {
+            background-color: var(--white);
+            border-radius: 8px;
             box-shadow: var(--shadow);
-            overflow: hidden;
-            position: relative;
             margin-bottom: 20px;
+            overflow: visible; /* 改為 visible 以免遮擋頭像 */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-header {
+            padding: 20px 24px 0 24px;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .card-content {
+            padding: 24px;
+        }
+
+        /* --- 頂部個人資訊區 (解決遮擋問題) --- */
+        .profile-header-card {
+            position: relative;
         }
 
         .banner {
             height: 200px;
-            background: linear-gradient(135deg, #A0B4CB, #708090);
+            background: linear-gradient(135deg, #A0B4CB 0%, #708090 100%);
+            background-size: cover;
+            background-position: center;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
         }
 
-        .info-section {
-            padding: 24px;
+        .profile-info-wrapper {
+            padding: 0 24px 24px 24px;
             position: relative;
-            /* 關鍵修正：增加頂部內邊距，確保名字在照片下方 */
-            padding-top: 80px; 
+            min-height: 180px; /* 給予足夠高度放置資訊 */
         }
 
-        .photo-box {
+        .profile-photo-container {
             width: 160px;
             height: 160px;
             border-radius: 50%;
             border: 4px solid var(--white);
+            background-color: #E9EDF0;
             position: absolute;
-            top: -100px; /* 向上移動壓在 banner 上 */
+            top: -110px; /* 壓在 Banner 上 */
             left: 24px;
-            background: #eee;
             overflow: hidden;
             z-index: 10;
         }
 
-        .photo-box img {
+        .profile-photo {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
+
+        /* 關鍵修正：使用 margin-top 確保文字在照片下方 */
+        .basic-info {
+            margin-top: 65px; 
+            max-width: 100%;
+            display: block;
+        }
+
         .name {
             font-size: 28px;
-            font
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 5px;
+        }
+
+        .headline {
+            font-size: 18px;
+            color: var(--text-main);
+            margin-bottom: 10px;
+        }
+
+        .location-contact {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .location-contact a {
+            color: var(--link-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .action-buttons {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 8px 24px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary { background-color: var(--link-color); color: var(--white); border: none; }
+        .btn-secondary { background-color: var(--white); color: var(--link-color); border: 1px solid var(--link-color); }
+
+        /* --- 技能清單樣式 --- */
+        .skills-list {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-item {
+            padding: 8px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            background: #fff;
+        }
+
+        /* --- 響應式手機版 --- */
+        @media (max-width: 768px) {
+            .banner { height: 150px; }
+            .profile-photo-container { 
+                width: 120px; 
+                height: 120px; 
+                top: -60px; 
+                left: calc(50% - 60px); 
+            }
+            .basic-info { 
+                margin-top: 70px; 
+                text-align: center; 
+            }
+            .action-buttons { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="card profile-header-card">
+            <div class="banner"></div>
+            <div class="profile-info-wrapper">
+                <div class="profile-photo-container">
+                    <img src="images/1.jpg" class="profile-photo" alt="Profile Photo" onerror="this.style.display='none';">
+                </div>
+
+                <div class="basic-info">
+                    <h1 class="name">[maiday]</h1>
+                    <p class="headline">全端工程師 | 影像美學與 UI/UX 設計 | 數位身份流動性探索者</p>
+                    <div class="location-contact">
+                        台灣台北市 &middot; <a href="#contact">聯絡方式</a>
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <a href="mailto:your.email@example.com" class="btn btn-primary">與我聯絡</a>
+                        <a href="#" class="btn btn-secondary">下載履歷</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">關於</div>
+            <div class="card-content">
+                <p>致力於結合專業開發技術與獨特的影像美感，專注於創造具有電影感與高品質體驗的數位產品。熱衷於解決複雜問題，並在專業紀律與創意自由之間尋求完美的平衡點。</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">專業技能</div>
+            <div class="card-content">
+                <ul class="skills-list">
+                    <li class="skill-item">React.js</li>
+                    <li class="skill-item">Node.js</li>
+                    <li class="skill-item">Python</li>
+                    <li class="skill-item">UI / UX Design</li>
+                    <li class="skill-item">影像後製 (Polaroid Aesthetic)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
